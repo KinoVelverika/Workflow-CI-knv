@@ -19,8 +19,10 @@ df = pd.read_csv('credit_risk_dataset.csv')
 df.dropna(inplace=True)
 
 # Tentukan Fitur (X) dan Target (y)
-X = df[['person_age', 'person_income', 'person_emp_length', 'loan_amnt', 'loan_int_rate', 'loan_percent_income']]
-y = df['loan_status']
+X = df[['income', 'age', 'loan_amount', 'credit_history']]
+y = df['approved']
+
+X = pd.get_dummies(X, drop_first=True)
 
 # membagi data latih dan uji
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
